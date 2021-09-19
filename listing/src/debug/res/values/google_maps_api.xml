@@ -1,0 +1,22 @@
+<resources>
+    <!--
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=E9:77:DD:EB:6A:83:1A:BC:49:1A:51:57:08:3A:4F:7D:C2:5F:EE:2F%3Bcom.marleyspoon.listing.maps
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.marleyspoon.listing.maps
+
+    SHA-1 certificate fingerprint:
+    E9:77:DD:EB:6A:83:1A:BC:49:1A:51:57:08:3A:4F:7D:C2:5F:EE:2F
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAWZGJxosECnD3KJpiTCM12hqoo39wyRNQ</string>
+</resources>

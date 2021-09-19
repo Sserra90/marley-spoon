@@ -1,0 +1,5 @@
+rootProject.name = "marleyspoon"
+include ':app'
+include ':listing'
+include ':net'
+include ':base-android'

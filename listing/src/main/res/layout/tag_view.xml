@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tag"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/space_s"
+    android:background="@drawable/fleet_type_background"
+    android:paddingStart="@dimen/space_s"
+    android:paddingTop="@dimen/space_xs"
+    android:paddingEnd="@dimen/space_s"
+    android:paddingBottom="@dimen/space_xs"
+    android:textColor="@android:color/white"
+    android:textSize="13sp"
+    android:textStyle="bold"
+    tools:text="Tom Cruise" />

@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.application'
+}
+
+apply from: '../buildSystem/android_module.gradle'
+apply from: '../buildSystem/dependencies.gradle'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    defaultConfig {
+        applicationId "com.sserra.marleyspoon"
+    }
+}
+
+dependencies {
+
+    implementation project(':listing')
+    implementation project(':base-android')
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2'
+
+    implementation deps.material
+    implementation deps.androidx.navigation
+    implementation deps.androidx.navigation_ktx
+    implementation deps.contentful
+    implementation deps.logging.timber
+    implementation deps.androidx.appCompat
+    implementation deps.hilt.base
+    kapt deps.hilt.processor
+}

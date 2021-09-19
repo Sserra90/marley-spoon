@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_label">Something went wrong</string>
+    <string name="retry_label">Retry</string>
+    <string name="no_internet_label">No internet connection</string>
+    <string name="error_recipes_label">Could not fetch recipes</string>
+    <string name="accessiblity_driver_image">recipe image</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.8">
+      <module name="freenow.app" target="11" />
+      <module name="freenow.base-android" target="11" />
+      <module name="freenow.listing" target="11" />
+      <module name="marleyspoon.app" target="11" />
+      <module name="marleyspoon.base-android" target="11" />
+      <module name="marleyspoon.listing" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

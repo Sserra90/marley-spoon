@@ -1,0 +1,50 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: "kotlin-parcelize"
+apply plugin: 'dagger.hilt.android.plugin'
+apply from : "../buildSystem/config.gradle"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+kapt {
+    correctErrorTypes = true
+}
+
+android {
+    compileSdkVersion config.compileSdkVersion
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.minTargetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner "com.marleyspoon.base_android.CustomTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+
+allprojects {
+    configurations.all {
+        resolutionStrategy.force 'org.objenesis:objenesis:2.6'
+        // Reference https://stackoverflow.com/questions/67358179/android-espresso-test-error-no-static-method-loadsingleserviceornull
+        resolutionStrategy.force 'androidx.test:monitor:1.4.0'
+    }
+}

@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+apply from: '../buildSystem/dependencies.gradle'
+
+repositories {
+    maven { url 'https://jitpack.io' }
+    google()
+    mavenCentral()
+    jcenter() // Warning: this repository is going to shut down soon
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation deps.kotlin
+
+    api deps.contentful
+    testImplementation deps.test.junit
+
+}
