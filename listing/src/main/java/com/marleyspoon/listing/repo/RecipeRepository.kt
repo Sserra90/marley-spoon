@@ -23,7 +23,7 @@ interface RecipeRepository {
 
     val feed: StateFlow<Page>
     suspend fun getRecipes()
-    suspend fun getRecipe(id: String): AsyncValue<UIRecipe>
+    suspend fun getRecipe(id: String): UIRecipe
 }
 
 class ContentfulRecipeRepository @Inject constructor(
@@ -59,13 +59,13 @@ class ContentfulRecipeRepository @Inject constructor(
             .all()
     }
 
-    override suspend fun getRecipe(id: String): AsyncValue<UIRecipe> {
+    override suspend fun getRecipe(id: String): UIRecipe {
         val recipe = lv.value.data.find { it.id == id }
 
         // If it's not locally make a request to fetch it
         // getRecipe(id)
 
-        return AsyncValue.Success(recipe!!)
+        return recipe!!
     }
 
     private fun emit(block: Page.() -> Page) {

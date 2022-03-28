@@ -12,6 +12,7 @@ import androidx.core.text.parseAsHtml
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import androidx.transition.TransitionInflater
@@ -39,26 +40,12 @@ interface HasToolbar {
 }
 
 @AndroidEntryPoint
-class RecipeFragment : Fragment(), Renderable<UIState> {
+class RecipeFragment : Fragment(R.layout.recipe_fragment), Renderable<UIState> {
 
     private val args by navArgs<RecipeFragmentArgs>()
     private val vm: RecipesViewModel by activityViewModels()
-    private var binding: RecipeFragmentBinding by onDestroyNullable()
+    private val binding by viewBinding(RecipeFragmentBinding::bind)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = RecipeFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    @FlowPreview
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Store.Binder<UIState>().bind(this, vm)

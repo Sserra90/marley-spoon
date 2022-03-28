@@ -8,7 +8,7 @@ sealed class AsyncValue<out T> {
 }
 
 sealed class FailureType {
-    object UnknownFailure : FailureType()
+    data class UnknownFailure(val error: Throwable) : FailureType()
     object NetworkFailure : FailureType()
     data class ServerFailure(val error: String) : FailureType()
     data class FeatureFailure<T>(val failure: T) : FailureType()

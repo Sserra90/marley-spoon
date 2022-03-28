@@ -22,7 +22,7 @@ class RecipesViewModel @Inject constructor(
 
     init {
         repo.feed.onEach { page ->
-            setState { it.copy(page = page) }
+            setState { copy(page = page) }
         }.launchIn(viewModelScope)
     }
 
@@ -32,12 +32,8 @@ class RecipesViewModel @Inject constructor(
                 repo.getRecipes()
             }
             is GetRecipe -> {
-                setState {
-                    it.copy(recipe = AsyncValue.Loading)
-                }
-                viewModelScope.launch {
-                    val recipe = repo.getRecipe(action.id)
-                    setState { it.copy(recipe = recipe) }
+                suspend { repo.getRecipe(action.id) }.execute {
+                    copy(recipe = it)
                 }
             }
         }

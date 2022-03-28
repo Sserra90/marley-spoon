@@ -1,37 +1,13 @@
 package com.marleyspoon.listing.udf
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-
-
-interface Renderable<T : State> : LifecycleOwner {
-    fun render(state: T) {}
-    fun runEffect(effect: UIEffect) {}
-}
-
-open class UIEffect
-open class UIAction
-open class State
-
-interface StoreProvider<T : State> {
-    fun provide(): Store<T>
-}
-
-abstract class StoreViewModel<S : State>(protected val store: Store<S>) : ViewModel(),
-    StoreProvider<S> {
-
-    override fun provide(): Store<S> = store
-
-    abstract fun onUserAction(action: UIAction)
-
-    protected fun setState(block: (s: S) -> S) {
-        store.setState(block)
-    }
-}
 
 class Store<T : State>(private val initialState: T) {
 

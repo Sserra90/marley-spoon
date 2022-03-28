@@ -4,23 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.marleyspoon.base_android.FailureType
-import com.marleyspoon.base_android.onDestroyNullable
+import com.marleyspoon.base_android.viewBinding
 import com.marleyspoon.base_android.visible
 import com.marleyspoon.listing.Navigator
+import com.marleyspoon.listing.R
 import com.marleyspoon.listing.databinding.RecipesListingFragmentBinding
-import com.marleyspoon.listing.repo.RecipeRepository.*
+import com.marleyspoon.listing.repo.RecipeRepository.NetworkState
 import com.marleyspoon.listing.udf.Renderable
 import com.marleyspoon.listing.udf.Store
-import com.marleyspoon.listing.ui.*
+import com.marleyspoon.listing.ui.LoadRecipes
+import com.marleyspoon.listing.ui.RecipesViewModel
+import com.marleyspoon.listing.ui.UIState
 import com.marleyspoon.listing.ui.detail.HasToolbar
 import com.marleyspoon.listing.ui.views.ErrorViewFactory
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -35,14 +36,14 @@ object ViewModelFactoryProducer {
 }
 
 @AndroidEntryPoint
-class RecipeListingFragment : Fragment(), Renderable<UIState> {
+class RecipeListingFragment : Fragment(R.layout.recipes_listing_fragment), Renderable<UIState> {
 
     @Inject
     lateinit var navigator: Navigator
 
     private val vm: RecipesViewModel by activityViewModels(ViewModelFactoryProducer.producer)
+    private val binding by viewBinding(RecipesListingFragmentBinding::bind)
 
-    private var binding: RecipesListingFragmentBinding by onDestroyNullable()
     private val controller = RecipesController(onItemClick = { id ->
         navigator.openRecipePage(id)
     })
@@ -53,15 +54,6 @@ class RecipeListingFragment : Fragment(), Renderable<UIState> {
         if (savedInstanceState == null) {
             loadRecipes()
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = RecipesListingFragmentBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
